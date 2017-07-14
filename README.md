@@ -29,3 +29,11 @@
     import sys, csv, itertools
     rows = itertools.izip(*csv.reader(sys.stdin, delimiter=","))
     sys.stdout.writelines(",".join(row) + "\n" for row in rows)
+
+## iptables copy packet to destination
+
+    iptables -t mangle -A POSTROUTING -d 10.0.0.1 -j TEE --gateway 10.0.0.2
+
+
+
+
