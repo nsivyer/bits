@@ -23,7 +23,7 @@
 
     sudo killall -HUP mDNSResponder
 
-## Transpose on dimetional CSV
+## Transpose one dimetional CSV
 
     #!/usr/bin/env python
     import sys, csv, itertools
