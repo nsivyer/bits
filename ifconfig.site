@@ -1,0 +1,30 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+
+	location / {
+		default_type 'text/plain';
+		content_by_lua_block {
+        		if ngx.var.remote_addr then
+                		ngx.say(ngx.var.remote_addr)
+            		else
+				ngx.say("Unknown")
+			end
+        	}
+	}
+        location /json {
+		#apt-get install lua-cjson
+		default_type application/json;
+		content_by_lua_block {
+                	local cjson = require "cjson"
+			local req_headers = ngx.req.get_headers()
+			ngx.say(cjson.encode({
+				ip = ngx.var.remote_addr,
+				agt = req_headers['User-Agent']
+				}
+			))
+		}
+	}
+}
