@@ -68,6 +68,6 @@
 
 Quick nginx/lua ifconfig implementation
 
-[ifconfig.site]
+[ifconfig.site](ifconfig.site)
 
 
